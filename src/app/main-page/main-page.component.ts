@@ -38,7 +38,7 @@ export class MainPageComponent implements OnInit {
     let user : any;
     try {
     user = this.app.allUsers[sessionStorage.getItem("userId")]
-    console.log(user)
+    //console.log(user)
   } catch(err) {
     console.error("Echec",err)
     //const redirectUrl = '/login';
@@ -59,8 +59,17 @@ export class MainPageComponent implements OnInit {
   const mongo =user.mongoClient('Cluster0');
   const collection = mongo.db('Data').collection("Analyses");
   const collection2 = mongo.db('Users').collection("Example ID");
-  this.connected_users = Object.keys(this.app.allUsers).length
-  console.log(this.connected_users)
+  //console.log(this.app.allUsers)
+  this.connected_users = 0
+  Object.keys(this.app.allUsers).forEach((key)=>{
+    if (this.app.allUsers[key].isLoggedIn) {
+      //console.log(this.connected_users)
+      this.connected_users = this.connected_users +1
+      
+    }
+    //console.log(this.app.allUsers[key].isLoggedIn)
+  })
+  //console.log(this.connected_users)
   collection.find({active:true}).then((value)=>{
     this.analyses_actives = value.length.toString()
   })

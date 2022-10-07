@@ -85,7 +85,7 @@ export class ConnexionFormComponent {
   
           // Redirect the user
           this.router.navigate([redirectUrl]);
-          console.log("redirected to",redirectUrl)
+          //console.log("redirected to",redirectUrl)
         } else {
           this.connected = false;
         }

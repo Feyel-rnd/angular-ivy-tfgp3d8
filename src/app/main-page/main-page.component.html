@@ -70,6 +70,13 @@
             <span class="ms-1 d-none d-sm-inline">Créer une analyse</span>
           </a>
         </li>
+        <li *ngIf="authorized" class="nav-item pb-5">
+        <a routerLink="create-analysis" class="nav-link align-middle px-0">
+          <i class="fs-4 bi-house"></i
+          ><mat-icon matTooltip="Utilisateurs connectés">perm_identity</mat-icon>
+          <span class="ms-1 d-none d-sm-inline">Utilisateurs connectés</span>
+        </a>
+      </li>
 
         </ul>
         <hr />

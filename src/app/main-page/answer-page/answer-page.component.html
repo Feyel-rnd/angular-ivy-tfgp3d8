@@ -9,9 +9,16 @@
 
 <tr class="border" *ngFor="let analyse of sortedData">
   <td>{{analyse.name}}</td>
-  <td><span>
-    {{analyse.active}}
+  <td><span *ngIf="analyse.active==true; else untrue">
+    <mat-chip-list>
+      <mat-chip color="primary">Active</mat-chip>
+    </mat-chip-list>
   </span>
+  <ng-template #untrue>
+  <mat-chip-list>
+  <mat-chip>Inactive</mat-chip>
+</mat-chip-list>
+  </ng-template>
   </td>
   <td>{{analyse.type}}</td>
   <!-- <td>{{dessert.carbs}}</td>

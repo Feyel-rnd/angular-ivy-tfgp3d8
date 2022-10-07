@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ValidTokenGuard implements CanActivate {
-  constructor(public router: Router) { }
+  constructor(public router: Router,private _snackBar: MatSnackBar) { }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
@@ -16,6 +20,7 @@ export class ValidTokenGuard implements CanActivate {
   
           // Redirect the user
           this.router.navigate([redirectUrl]);
+          this.openSnackBar("Votre session a expiré, veuillez vous reconnecter.","Fermer")
         return false
       }
       else {

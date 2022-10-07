@@ -42,14 +42,9 @@ export class MainPageComponent implements OnInit {
     let user : any;
     try {
     user = this.app.allUsers[sessionStorage.getItem("userId")]
-    console.log(user.refreshToken)
+    
   } catch(err) {
     console.error("Echec",err)
-    //this.openSnackBar("Essai de Snackbar","Fermer")
-    //const redirectUrl = '/login';
-  
-          // Redirect the user
-          //this.router.navigate([redirectUrl]);
 
   }
     //const user = JSON.parse(sessionStorage.getItem("user"))
@@ -78,9 +73,9 @@ export class MainPageComponent implements OnInit {
   collection.find({active:true}).then((value)=>{
     this.analyses_actives = value.length.toString()
   })
-  collection2.find({}).then((value)=>{
-    this.result = value[0]["owner_id"]
-  })
+  // collection2.find({}).then((value)=>{
+  //   this.result = value[0]["owner_id"]
+  // })
     //sessionStorage.getItem("userRefreshToken");
     //sessionStorage.getItem("email");
     //sessionStorage.getItem("username");

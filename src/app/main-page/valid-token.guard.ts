@@ -4,6 +4,8 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
+//import * as Realm from 'realm-web';
+
 @Injectable()
 export class ValidTokenGuard implements CanActivate {
   constructor(public router: Router,private _snackBar: MatSnackBar) { }
@@ -15,6 +17,7 @@ export class ValidTokenGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       const app = environment.application
       const user = app.allUsers[sessionStorage.getItem("userId")]
+      //console.log(user.refreshToken)
       if (user.refreshToken==null) {
         const redirectUrl = '/login';
   

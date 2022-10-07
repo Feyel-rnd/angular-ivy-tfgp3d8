@@ -27,19 +27,22 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: MainPageComponent,
-    canActivate: [YourGuard,ValidTokenGuard],
+    canActivate: [ValidTokenGuard,YourGuard],
     children: [
       {
         path: 'home', // child route path
         component: HomePageComponent, // child route component that the router renders
+        canActivate: [ValidTokenGuard],
       },
       {
         path: 'answer',
         component: AnswerPageComponent, // another child route component that the router renders
+        canActivate: [ValidTokenGuard],
       },
       {
         path: 'my-analysis', // child route path
         component: MyAnalysisPageComponent, // child route component that the router renders
+        canActivate: [ValidTokenGuard],
       },
       {
         path: 'my-sensory-profile',

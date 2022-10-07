@@ -12,6 +12,12 @@
           min-vh-100
         "
       >
+      
+      <mat-chip-list >
+      <mat-chip *ngIf="authorized; else unauthorized">Admin</mat-chip>
+      <ng-template #unauthorized>
+        
+      <mat-chip>Jury</mat-chip></ng-template></mat-chip-list>
         <a
           routerLink="/dashboard"
           class="
@@ -23,7 +29,7 @@
             text-white text-decoration-none
           "
         >
-          <span class="fs-5 d-none d-sm-inline">Menu</span>
+          <span class="fs-5 d-none mt-3 d-sm-inline">Menu</span>
         </a>
         <ul
           class="
@@ -81,6 +87,7 @@
         </ul>
         <hr />
         <div class="dropdown pb-4">
+          
           <a
             href="#"
             class="
@@ -93,13 +100,15 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <img
+            <img 
+            
               src="https://ui-avatars.com/api/?name={{ username }}"
               alt="hugenerd"
               width="30"
               height="30"
               class="rounded-circle"
             />
+            
             <span class="d-none d-sm-inline mx-1">{{ username }}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark text-small shadow">

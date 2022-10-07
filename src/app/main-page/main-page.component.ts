@@ -34,20 +34,33 @@ export class MainPageComponent implements OnInit {
   }
   analyses_actives=""
   ngOnInit() {
-    
-    
+    let user : any;
+    try {
+    user = this.app.allUsers[sessionStorage.getItem("userId")]
+    console.log(user)
+  } catch(err) {
+    console.error("Echec",err)
+    //const redirectUrl = '/login';
+  
+          // Redirect the user
+          //this.router.navigate([redirectUrl]);
+
+  }
+    //const user = JSON.parse(sessionStorage.getItem("user"))
     
     //this.userRefreshToken = sessionStorage.getItem("userRefreshToken");
     this.userRefreshToken = sessionStorage.getItem("userRefreshToken");
     //console.log(this.app.currentUser)
     this.email = sessionStorage.getItem("email");
     this.username = sessionStorage.getItem("username");
-    this.userid = sessionStorage.getItem("userId");
+    
     this.authorized = sessionStorage.getItem("userId")=="6322ffbb91365a9b736d5a77";
-  const mongo = this.app.currentUser.mongoClient('Cluster0');
+  const mongo =user.mongoClient('Cluster0');
   const collection = mongo.db('Data').collection("Analyses");
   const collection2 = mongo.db('Users').collection("Example ID");
   collection.find({active:true}).then((value)=>{
+    console.log(user)
+    console.log(value)
     this.analyses_actives = value.length.toString()
   })
   collection2.find({}).then((value)=>{

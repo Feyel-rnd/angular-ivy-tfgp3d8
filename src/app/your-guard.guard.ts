@@ -10,7 +10,7 @@ export class YourGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-      if (sessionStorage.getItem("userRefreshToken")!=undefined && sessionStorage.getItem("userRefreshToken")!=""){
+      if (sessionStorage.getItem("userId")!=undefined && sessionStorage.getItem("userId")!=""){
     return true;}
     else {
       const redirectUrl = '/login';

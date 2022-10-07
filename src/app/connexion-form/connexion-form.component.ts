@@ -25,10 +25,10 @@ async function loginEmailPassword(email, password) {
     //console.log(app.currentUser)
     const emmail = user.profile.email
     const username = emmail.split("@")[0]
-    sessionStorage.setItem("userRefreshToken", userRefreshToken);
     sessionStorage.setItem("email", emmail);
     sessionStorage.setItem("username", username);
     sessionStorage.setItem("userId", user.id);
+    sessionStorage.setItem("user",JSON.stringify(user))
     
     return true;
   } catch (err) {
@@ -85,6 +85,7 @@ export class ConnexionFormComponent {
   
           // Redirect the user
           this.router.navigate([redirectUrl]);
+          console.log("redirected to",redirectUrl)
         } else {
           this.connected = false;
         }

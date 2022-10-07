@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import * as Realm from 'realm-web';
 import {ConnexionFormComponent} from '../connexion-form/connexion-form.component'
 import { environment } from '../../environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 //const app = ConnexionFormComponent
 @Component({
@@ -12,7 +13,10 @@ import { environment } from '../../environments/environment';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor(public router: Router) { }
+  constructor(public router: Router,private _snackBar: MatSnackBar) { }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
    userRefreshToken : string;
   // bla : any;
    username : string;
@@ -38,9 +42,11 @@ export class MainPageComponent implements OnInit {
     let user : any;
     try {
     user = this.app.allUsers[sessionStorage.getItem("userId")]
-    //console.log(user)
+    console.log(user)
+    console.log(user instanceof Error)
   } catch(err) {
     console.error("Echec",err)
+    this.openSnackBar("Essai de Snackbar","Fermer")
     //const redirectUrl = '/login';
   
           // Redirect the user

@@ -17,6 +17,7 @@ import { SettingsPageComponent } from './main-page/settings-page/settings-page.c
 import { MyProfilePageComponent } from './main-page/my-profile-page/my-profile-page.component';
 import { AdminGuard } from './main-page/admin.guard';
 import { ConnectedUsersComponent } from './main-page/connected-users/connected-users.component';
+import { ValidTokenGuard } from './main-page/valid-token.guard';
 //import { RegisterFormComponent } from './register-form/register-form.component';
 
 //const routes: Routes = []; // sets up routes constant where you define your routes
@@ -26,7 +27,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: MainPageComponent,
-    canActivate: [YourGuard],
+    canActivate: [YourGuard,ValidTokenGuard],
     children: [
       {
         path: 'home', // child route path

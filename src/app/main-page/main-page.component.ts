@@ -42,11 +42,10 @@ export class MainPageComponent implements OnInit {
     let user : any;
     try {
     user = this.app.allUsers[sessionStorage.getItem("userId")]
-    console.log(user)
-    console.log(user instanceof Error)
+    console.log(user.refreshToken)
   } catch(err) {
     console.error("Echec",err)
-    this.openSnackBar("Essai de Snackbar","Fermer")
+    //this.openSnackBar("Essai de Snackbar","Fermer")
     //const redirectUrl = '/login';
   
           // Redirect the user

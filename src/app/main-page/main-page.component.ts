@@ -13,14 +13,15 @@ import { environment } from '../../environments/environment';
 export class MainPageComponent implements OnInit {
 
   constructor(public router: Router) { }
-   userRefreshToken : any;
+   userRefreshToken : string;
   // bla : any;
-   username : any;
-   userid : any;
-   email : any;
+   username : string;
+   userid : string;
+   email : string;
    result : any;
   // app : any
   authorized : boolean;
+  connected_users : number;
   app = environment.application
   async LogOut(){
 
@@ -58,9 +59,9 @@ export class MainPageComponent implements OnInit {
   const mongo =user.mongoClient('Cluster0');
   const collection = mongo.db('Data').collection("Analyses");
   const collection2 = mongo.db('Users').collection("Example ID");
+  this.connected_users = Object.keys(this.app.allUsers).length
+  console.log(this.connected_users)
   collection.find({active:true}).then((value)=>{
-    console.log(user)
-    console.log(value)
     this.analyses_actives = value.length.toString()
   })
   collection2.find({}).then((value)=>{
